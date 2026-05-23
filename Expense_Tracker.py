@@ -36,14 +36,15 @@ def add_expense():
     amount=amount_entry.get()
     description=description_ent.get()
 
-    if not amount.isdigit() or not category or not description:
+    if not amount.isdigit() or not description or category=="Select Category":
         messagebox.showerror("Invalid Input","Please enter valid expense details.")
-
-    expenses.append([category,amount,description])
-    expense_listbox.insert(tk.END,f"{category} | ${amount} | {description}")
-    calculate_total()
-    clear_input()
-    save_expenses()
+        return
+    else:
+        expenses.append([category,amount,description])
+        expense_listbox.insert(tk.END,f"{category} | ${amount} | {description}")
+        calculate_total()
+        clear_input()
+        save_expenses()
 
 
 def delete_expenses():
